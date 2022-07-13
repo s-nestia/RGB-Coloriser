@@ -68,18 +68,19 @@ class SettingsViewController: UIViewController {
     }
     
     private func setSliderValues() {
-        guard let components = colorView.backgroundColor?.cgColor.components else {
+        guard let color = colorView.backgroundColor else {
             return
         }
-        // Почему-то нету значений в массиве по индексу 2 для белого цвета, но вроде должно работать
         
-//        let red = components[0]
-//        let green = components[1]
-//        let blue = components[2]
-//
-//        redColorSlider.value = Float(red)
-//        greenColorSlider.value = Float(green)
-//        blueColorSlider.value = Float(blue)
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+
+        color.getRed(&red, green: &green, blue: &blue, alpha: nil)
+
+        redColorSlider.value = Float(red)
+        greenColorSlider.value = Float(green)
+        blueColorSlider.value = Float(blue)
         
         setTextValue(for: redColorTextField, greenColorTextField, blueColorTextField)
         setValue(for: redColorParameter, greenColorParameter, blueColorParameter)
