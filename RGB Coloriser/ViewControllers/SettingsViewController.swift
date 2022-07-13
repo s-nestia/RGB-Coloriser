@@ -28,13 +28,16 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         colorView.layer.cornerRadius = 10
-        setColor()
+        colorView.backgroundColor = delegate?.currentColor
         navigationItem.hidesBackButton = true
-        setTextValue(for: redColorTextField, greenColorTextField, blueColorTextField)
-        setValue(for: redColorParameter, greenColorParameter, blueColorParameter)
+        setSliderValues()
+        redColorTextField.delegate = self
+        greenColorTextField.delegate = self
+        blueColorTextField.delegate = self
     }
     
     @IBAction func doneAction() {
+        view.endEditing(true)
         delegate?.setColor(colorView.backgroundColor ?? .white)
         dismiss(animated: true)
     }
@@ -62,6 +65,24 @@ class SettingsViewController: UIViewController {
             blue: CGFloat(blueColorSlider.value),
             alpha: 1.0
         )
+    }
+    
+    private func setSliderValues() {
+        guard let components = colorView.backgroundColor?.cgColor.components else {
+            return
+        }
+        // Почему-то нету значений в массиве по индексу 2 для белого цвета, но вроде должно работать
+        
+//        let red = components[0]
+//        let green = components[1]
+//        let blue = components[2]
+//
+//        redColorSlider.value = Float(red)
+//        greenColorSlider.value = Float(green)
+//        blueColorSlider.value = Float(blue)
+        
+        setTextValue(for: redColorTextField, greenColorTextField, blueColorTextField)
+        setValue(for: redColorParameter, greenColorParameter, blueColorParameter)
     }
     
     private func setValue(for labels: UILabel...) {
@@ -94,5 +115,21 @@ class SettingsViewController: UIViewController {
         String(format: "%.2f", slider.value)
     }
     
+}
+
+extension SettingsViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch textField {
+        case redColorTextField:
+            redColorSlider.value =  Float(textField.text ?? "") ?? 0
+            viewColorChange(redColorSlider)
+        case greenColorTextField:
+            greenColorSlider.value =  Float(textField.text ?? "") ?? 0
+            viewColorChange(greenColorSlider)
+        default:
+            blueColorSlider.value =  Float(textField.text ?? "") ?? 0
+            viewColorChange(blueColorSlider)
+        }
+    }
 }
 

@@ -9,6 +9,8 @@
 import UIKit
 
 protocol SettingsViewControllerDelegate {
+    var currentColor: UIColor? { get }
+    
     func setColor(_ color: UIColor)
 }
 class MainViewController: UIViewController {
@@ -24,6 +26,10 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: SettingsViewControllerDelegate {
+    var currentColor: UIColor? {
+        view.backgroundColor
+    }
+    
     func setColor(_ color: UIColor) {
         view.backgroundColor = color
     }
