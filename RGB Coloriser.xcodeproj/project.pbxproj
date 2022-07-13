@@ -56,15 +56,47 @@
 		22F6FA042865F4E100A7995F /* RGB Coloriser */ = {
 			isa = PBXGroup;
 			children = (
-				22F6FA052865F4E100A7995F /* AppDelegate.swift */,
-				22F6FA072865F4E100A7995F /* SceneDelegate.swift */,
-				22F6FA092865F4E100A7995F /* ViewController.swift */,
-				22F6FA0B2865F4E100A7995F /* Main.storyboard */,
-				22F6FA0E2865F4E400A7995F /* Assets.xcassets */,
-				22F6FA102865F4E400A7995F /* LaunchScreen.storyboard */,
-				22F6FA132865F4E400A7995F /* Info.plist */,
+				5D6DF280287ED76700EB5487 /* App */,
+				5D6DF283287ED8B900EB5487 /* ViewControllers */,
+				5D6DF282287ED88E00EB5487 /* Storyboards */,
+				5D6DF281287ED7B500EB5487 /* Rsourses */,
 			);
 			path = "RGB Coloriser";
+			sourceTree = "<group>";
+		};
+		5D6DF280287ED76700EB5487 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				22F6FA052865F4E100A7995F /* AppDelegate.swift */,
+				22F6FA072865F4E100A7995F /* SceneDelegate.swift */,
+				22F6FA132865F4E400A7995F /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		5D6DF281287ED7B500EB5487 /* Rsourses */ = {
+			isa = PBXGroup;
+			children = (
+				22F6FA0E2865F4E400A7995F /* Assets.xcassets */,
+			);
+			path = Rsourses;
+			sourceTree = "<group>";
+		};
+		5D6DF282287ED88E00EB5487 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				22F6FA0B2865F4E100A7995F /* Main.storyboard */,
+				22F6FA102865F4E400A7995F /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		5D6DF283287ED8B900EB5487 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				22F6FA092865F4E100A7995F /* ViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,7 +318,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CF493G83QH;
-				INFOPLIST_FILE = "RGB Coloriser/Info.plist";
+				INFOPLIST_FILE = "RGB Coloriser/App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -305,7 +337,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CF493G83QH;
-				INFOPLIST_FILE = "RGB Coloriser/Info.plist";
+				INFOPLIST_FILE = "RGB Coloriser/App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
