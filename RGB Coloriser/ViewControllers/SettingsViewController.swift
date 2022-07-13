@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SettingsViewController.swift
 //  RGB Coloriser
 //
 //  Created by Anastasia Liapich on 6/24/22.
@@ -8,35 +8,50 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SettingsViewController: UIViewController {
     @IBOutlet private var colorView: UIView!
     
     @IBOutlet private var redColorSlider: UISlider!
     @IBOutlet private var greenColorSlider: UISlider!
     @IBOutlet private var blueColorSlider: UISlider!
     
+    @IBOutlet var redColorTextField: UITextField!
+    @IBOutlet var greenColorTextField: UITextField!
+    @IBOutlet var blueColorTextField: UITextField!
+    
     @IBOutlet private var redColorParameter: UILabel!
     @IBOutlet private var greenColorParameter: UILabel!
     @IBOutlet private var blueColorParameter: UILabel!
+    
+    var delegate: SettingsViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         colorView.layer.cornerRadius = 10
         setColor()
+        navigationItem.hidesBackButton = true
+        setTextValue(for: redColorTextField, greenColorTextField, blueColorTextField)
         setValue(for: redColorParameter, greenColorParameter, blueColorParameter)
+    }
+    
+    @IBAction func doneAction() {
+        delegate?.setColor(colorView.backgroundColor ?? .white)
+        dismiss(animated: true)
     }
     
     @IBAction private func viewColorChange(_ sender: UISlider) {
         setColor()
         switch sender {
-            case redColorSlider:
-                redColorParameter.text = string(from: redColorSlider)
-            case greenColorSlider:
-                greenColorParameter.text = string(from: greenColorSlider)
-            default:
-                blueColorParameter.text = string(from: blueColorSlider)
+        case redColorSlider:
+            redColorParameter.text = string(from: redColorSlider)
+            redColorTextField.text = string(from: redColorSlider)
+        case greenColorSlider:
+            greenColorParameter.text = string(from: greenColorSlider)
+            greenColorTextField.text = string(from: greenColorSlider)
+        default:
+            blueColorParameter.text = string(from: blueColorSlider)
+            blueColorTextField.text = string(from: blueColorSlider)
         }
-        setValue(for: redColorParameter, greenColorParameter, blueColorParameter)
         
     }
     
@@ -58,6 +73,19 @@ class ViewController: UIViewController {
                 greenColorParameter.text = string(from: greenColorSlider)
             default:
                 blueColorParameter.text = string(from: blueColorSlider)
+            }
+        }
+    }
+    
+    private func setTextValue(for textFields: UITextField...) {
+        textFields.forEach { textField in
+            switch textField {
+            case redColorTextField:
+                redColorTextField.text = string(from: redColorSlider)
+            case greenColorTextField:
+                greenColorTextField.text = string(from: greenColorSlider)
+            default:
+                blueColorTextField.text = string(from: blueColorSlider)
             }
         }
     }
